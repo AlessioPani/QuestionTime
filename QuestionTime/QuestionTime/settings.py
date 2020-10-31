@@ -43,12 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Extra Apps
-    'django_extensions',
     'decouple',
+    'django_extensions',
+    'crispy_forms',
+
+    # Authentications Apps
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # REST Framework Apps
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
 
     # Developed Apps
     'users'
@@ -69,7 +78,7 @@ ROOT_URLCONF = 'QuestionTime.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,5 +143,38 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Custom user model
+# Others Django parameters
+LOGIN_URL = "accounts/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+# Custom User model
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Django Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Django.contrib.sites
+SITE_ID = 1
+
+# Django-allauth
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = True
+
+# REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

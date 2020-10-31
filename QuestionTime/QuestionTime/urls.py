@@ -14,8 +14,52 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path, re_path
+
+from django_registration.backends.one_step.views import RegistrationView
+from users.forms import CustomUserForm
+from core.views import indexTemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    # Django Admin panel
+    path('admin/',
+         admin.site.urls),
+
+    # Login with Browsable API
+    path('api-auth/',
+         include('rest_framework.urls')),
+
+    # Login with REST Framework (rest_auth)
+    path('api/rest-auth/',
+         include('rest_auth.urls')),
+
+    # Registration with REST Framework (rest_auth)
+    path('api/rest-auth/registration/',
+         include('rest_auth.registration.urls')),
+
+    # Login from browser with Django standard views
+    path('accounts/',
+         include('django.contrib.auth.urls')),
+
+    # Registration from browser with Django-registration views
+    path('accounts/register/',
+         RegistrationView.as_view(
+             form_class=CustomUserForm,
+             success_url="/"),
+         name='django_register_registration'),
+
+    # Urls for browser with Django-registration views
+    path('accounts/register/',
+         include('django_registration.backends.one_step.urls')),
+
+    # Custom users REST API
+    path('api/',
+         include('users.api.urls')),
+
+    # Index page
+    re_path(r"^.*$",
+            indexTemplateView.as_view(),
+            name="entry_point")
+
 ]
