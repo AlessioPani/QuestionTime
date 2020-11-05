@@ -57,7 +57,10 @@ urlpatterns = [
     path('api/',
          include('users.api.urls')),
 
-    # Index page
+    path('api/',
+         include('questions.api.urls')),
+
+    # Index page redirect
     re_path(r"^.*$",
             indexTemplateView.as_view(),
             name="entry_point")
