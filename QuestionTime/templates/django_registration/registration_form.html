@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Create an Account</h1>
+    <h1>Create an Account on QuestionTime</h1>
 
     <div class="registration-form-container">
         <form method="post">
@@ -10,6 +10,9 @@
             {{ form|crispy }}
             <button class="btn btn-sm btn-outline-primary" type="submit">Register</button>
         </form>
+        <p class="mt-2">
+            or <a href="{% url 'login' %}">Login</a>.
+        </p>
     </div>
 
 {% endblock content %}

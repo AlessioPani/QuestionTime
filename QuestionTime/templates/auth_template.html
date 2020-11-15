@@ -10,7 +10,14 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
           crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <style>
+
+        html, body {
+            height: 100%;
+            font-family: 'Playfair Display', serif;
+        }
+
         .login-form-container {
             width: 300px;
             margin: auto;
@@ -20,15 +27,32 @@
             width: 400px;
             margin: auto;
         }
+
+        .outer-area {
+            margin-top: 100px;
+        }
+
+        .auth-box {
+            border: 3px solid lightgray;
+            border-radius: 10px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            width: 500px;
+            margin: auto;
+        }
+        
     </style>
 </head>
 <body>
     
-    <div class="auth-box text-center">
-        {% block content %}
-            
-        {% endblock content %}
-    
+    <div class="outer-area">
+
+        <div class="auth-box text-center">
+            {% block content %}
+                
+            {% endblock content %}
+        </div>
+
     </div>
 
 </body>

@@ -2,7 +2,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Login</h1>
+    <h1>QuestionTime</h1>
+    <p class="lead text-muted">Share your knowledge!</p>
 
     <div class="login-form-container">
         <form method="post">
@@ -10,6 +11,9 @@
             {{ form|crispy }}
             <button class="btn btn-sm btn-outline-primary" type="submit">Login</button>
         </form>
+        <p class="mt-2">
+            or <a href="{% url 'django_register_registration' %}">Register</a> an account.
+        </p>
     </div>
 
 {% endblock content %}
