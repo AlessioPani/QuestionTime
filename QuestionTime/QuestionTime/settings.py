@@ -59,6 +59,9 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
 
+    # Vue.js Apps
+    'webpack_loader',
+
     # Developed Apps
     'users',
     'questions'
@@ -144,6 +147,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Webpack Loader Parameters
+STATICFILES_DIRS = [
+    BASE_DIR / 'assets/',
+    BASE_DIR / 'frontend/dist',
+]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': BASE_DIR / 'frontend/webpack-stats.json',
+    }
+}
+
 # Others Django parameters
 LOGIN_URL = "accounts/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -164,11 +180,13 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 # REST Framework
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ),
+    'PAGE_SIZE': 3,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }

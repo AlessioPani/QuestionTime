@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 
 
-class indexTemplateView(TemplateView, LoginRequiredMixin):
+class indexTemplateView(LoginRequiredMixin, TemplateView):
     '''
     View used to render the index.html template.
     '''
