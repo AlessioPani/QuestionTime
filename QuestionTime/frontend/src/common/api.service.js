@@ -1,8 +1,8 @@
-import CSRF_TOKEN from "./csrf_token.js"
+import { CSRF_TOKEN } from "./csrf_token.js"
 
 async function getJSON(response) {
-    if (response.status == 204) return '';
-    else return response.json();
+    if (response.status === 204) return '';
+    return response.json();
 }
 
 function apiService(endpoint, method, data) {
@@ -11,7 +11,7 @@ function apiService(endpoint, method, data) {
         body: data !== undefined ? JSON.stringify(data) : null,
         headers: {
             'content-type': 'application/json',
-            'X-CSRF_token': CSRF_TOKEN,
+            'X-CSRFToken': CSRF_TOKEN,
 
         }
     }

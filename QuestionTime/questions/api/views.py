@@ -86,7 +86,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     REST View used to retrieve all the questions written by a specific
     user.
     '''
-    queryset = Question.objects.all()
+    queryset = Question.objects.all().order_by("-created_at")
     lookup_field = "slug"
     serializer_class = QuestionSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
