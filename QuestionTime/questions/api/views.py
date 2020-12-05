@@ -78,7 +78,7 @@ class QuestionAnswerListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         kwarg_slug = self.kwargs.get("slug")
-        return Answer.objects.filter(question__slug=kwarg_slug)
+        return Answer.objects.filter(question__slug=kwarg_slug).order_by("-created_at")
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
