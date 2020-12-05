@@ -11,7 +11,6 @@
 				<div class="card-body">
 					<h5 class="card-title question-content"> {{ question.content }} </h5>
 					<hr class="mb-1 mt-1">
-					<p class="card-text answers-count">Answers: {{ question.answers_count}}</p>
 				</div>
 			</div>
             <hr>
@@ -41,7 +40,7 @@
             <template v-else>
                 <button class="btn btn-sm btn-success"
                         @click="showForm = true">
-                    Answer
+                    Add Answer
                 </button>
             </template>
 
@@ -49,7 +48,9 @@
             <AnswerComponent
                 v-for="(answer, index) in answers"
                 :answer="answer"
+                :requestUser="requestUser"
                 :key="index"
+                @delete-answer="deleteAnswer"
             />
             <div class="my-4">
                 <p v-show="loadingAnswers">...loading...</p>
@@ -89,6 +90,7 @@ export default {
             newAnswerBody: null,
             error: null,
             next: null,
+            requestUser: null
         }
     },
 
@@ -105,6 +107,10 @@ export default {
 
         setPageTitle(title) {
             document.title = title;
+        },
+
+        setRequestUser() {
+            this.requestUser = window.localStorage.getItem("username");
         },
 
         getQuestionAnswers() {
@@ -144,11 +150,24 @@ export default {
                 this.error = "Please, fill all the fields!";
             }
         },
+
+        async deleteAnswer(answer) {
+            let endpoint = `/api/answers/${answer.id}/`;
+            try {
+                await apiService(endpoint, "DELETE")
+                this.answers.splice(this.answers.indexOf(answer), 1);
+                this.userHasAnswered = false;
+            }
+            catch(err) {
+                console.log(err);
+            }
+        }
     },
 
     created() {
         this.getQuestionData();
         this.getQuestionAnswers();
+        this.setRequestUser();
     }
 }
 </script>
