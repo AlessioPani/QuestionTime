@@ -6,10 +6,11 @@
     </p>
     <p>{{ answer.body }}</p>
     <div v-if="isAnswerAuthor()" class="answer-owner">
-        <button 
-                class="btn btn-sm btn-primary mr-1"
-                >Edit
-        </button>
+        <router-link
+            :to="{ name: 'answer-editor', params: { id: answer.id } }"
+            class="btn btn-sm btn-secondary mr-1"
+            > <span>Modifica</span>
+        </router-link>
         <button 
                 class="btn btn-sm btn-danger"
                 @click="triggerDeleteAnswer"
