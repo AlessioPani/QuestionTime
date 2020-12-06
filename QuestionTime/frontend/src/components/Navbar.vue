@@ -1,33 +1,28 @@
 <template>
-  	<nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar">
     <div class="container">
-		<router-link 
-			:to="{name: 'home'}"
-			class="navbar-brand"
-			>QuestionTime
-		</router-link>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <router-link :to="{ name: 'home' }" class="navbar-brand"
+        >QuestionTime
+      </router-link>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          	<li class="nav-item">
-				<router-link 
-					:to="{name: 'home'}"
-					class="btn btn-sm btn-success"
-					>Home
-				</router-link>
-			</li>
-            <li class="nav-item mx-1">
-				<router-link 
-					:to="{name: 'question-editor'}"
-					class="btn btn-sm btn-danger"
-					>Add question
-				</router-link>
-			</li>
-            <li class="nav-item">
-				<a class="btn btn-sm btn-outline-secondary" 
-				   href="/accounts/logout/"
-				   >Logout
-				</a>
-			</li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'home' }" class="btn btn-sm btn-success"
+              >Home
+            </router-link>
+          </li>
+          <li class="nav-item mx-1">
+            <router-link
+              :to="{ name: 'question-editor' }"
+              class="btn btn-sm btn-danger"
+              >Add question
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="/accounts/logout/"
+              >Logout
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -36,23 +31,21 @@
 
 <script>
 export default {
-    name: "NavbarComponent"
-}
+  name: "NavbarComponent"
+};
 </script>
 
 <style class="css" scoped>
-	.my-navbar {
-		border-bottom: 1px solid;
+.my-navbar {
+  border-bottom: 1px solid;
+}
 
-	}
+.navbar-brand {
+  font-weight: bold;
+  font-size: 130%;
+}
 
-	.navbar-brand {
-		font-weight: bold;
-		font-size: 130%;
-		
-	}
-
-	.navbar-brand:hover {
-		color: #DC3545 !important; 
-	}
+.navbar-brand:hover {
+  color: #dc3545 !important;
+}
 </style>
