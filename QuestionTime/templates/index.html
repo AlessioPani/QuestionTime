@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
-{% load render_bundle from webpack_loader %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bundle.css' %}"/>
+{% endblock style %}
+
+{% block content %}
     <noscript>
         <strong>Please, enable Javascript.</strong>
     </noscript>
     
-    {% block content %}
-        <div id="app"></div>
-    {% render_bundle 'app' %}  
+    <div id="app"></div>
+    
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'bundle.js' %}"></script>
+{% endblock js %}

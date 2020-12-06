@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load render_bundle from webpack_loader %}
+    <noscript>
+        <strong>Please, enable Javascript.</strong>
+    </noscript>
+    
+    {% block content %}
+        <div id="app"></div>
+    {% render_bundle 'app' %}  
+{% endblock content %}
